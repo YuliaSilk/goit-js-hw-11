@@ -76,11 +76,11 @@ async function fetchImages(searchQuery) {
     gallery.insertAdjacentHTML("beforeend", imageCards.join(""));
     
     lightbox.refresh(); 
-  }
-  
-  } catch (error) {
-    console.error(error);
-  }
+   
+  } 
+  catch (error) {
+    console.error(error);}
+}
 
 
 
@@ -88,7 +88,7 @@ function createImageCard(image) {
   return `
     <div class="photo-card">
       <a href="${image.largeImageURL}" class="photo-card-link">
-        <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" />
+        <img class="photo" src="${image.webformatURL}" alt="${image.tags}" loading="lazy" />
       </a>
       <div class="info">
         <p class="info-item"><b>Likes:</b> ${image.likes}</p>

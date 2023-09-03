@@ -1,0 +1,190 @@
+:root {
+    
+    --favcolor: #b2baff;
+}
+
+* {
+  box-sizing: border-box;
+    }
+
+
+.body {
+height: 100%;
+background-color: lavender;
+font-family: 'Nunito', sans-serif;
+letter-spacing: 0.02em;
+}
+
+.header {
+    height: 60px;
+    position: sticky;
+    z-index: var(--header-idx);
+    top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid  #959ff9;
+    background-color: #b2baff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;;
+}
+/*  -- ФОРМА ПОШУКУ --- */
+/* .form-list {
+
+} */
+
+.search-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 350px;
+    height: 40px;
+    border-radius: 40px;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    transform: translate(-50%, -50%);
+    background: #fff;
+    transition: all 0.3s ease;
+  
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;; */
+
+}
+.search-form:focus {
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
+  }
+
+.form-input {
+
+  position: absolute;
+  top: 10px;
+  left: 38px;
+  font-size: 14px;
+  background: none;
+  color: #5a6674;
+  width: 195px;
+  height: 20px;
+  border: none;
+  appearance: none;
+  outline: none;
+
+ 
+  }
+    
+
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px; */
+
+
+
+.search-btn {
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    height: 20px;
+    width: 20px;
+    padding: 0;
+    margin: 0;
+    /* margin-left: auto; */
+    border: none;
+    background: none;
+    outline: none!important;
+    cursor: pointer;
+    
+  
+}
+
+/* ----------- */
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+/* -- КАРТКА ЗОБРАЖЕНЬ -- */
+
+.photo-card-link {
+    width: 100%;
+    flex-basis: calc((100% - 60px) / 4);
+    
+}
+
+.photo-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: space-evenly;
+
+
+   
+
+
+/* flex-basis:  calc((100%-30px)/4); */
+
+
+border-radius: 4px;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;;
+transition: transform 250ms linear;
+}
+.photo-card:hover,
+.photo-card:focus {
+    transform: scale(1.05);
+}
+
+/* -- зображення в картці -- */
+
+
+.photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+    
+
+/* контейнер з текстом */
+.info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 5px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.info-item {
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+/*  --  КНОПКА -- */
+
+.load-more-btn {
+    /* position:; */
+    top:50%;
+    background-color:var(--favcolor);
+    color: #fff;
+    border:none; 
+    border-radius:10px; 
+    padding:15px;
+    min-height:30px; 
+    min-width: 120px;
+}
+
+.load-more-btn:hover,
+.load-more-btn:focus {
+    outline-color: transparent;
+    outline-style:solid;
+    background-color: #8d98fe;
+    box-shadow: 0px 10px 15px -3px var(--favcolor);
+    transition: 0.7s;
+}
+.load-more-btn:active {
+    background-color: #ed8dec
+    /* color: #959ff9; */
+}
