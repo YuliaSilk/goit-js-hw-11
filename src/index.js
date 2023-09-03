@@ -1,4 +1,3 @@
-import { fetchImages } from './js/pixabayAPI';
 import Notiflix from 'notiflix';
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
@@ -12,7 +11,7 @@ import axios from "axios";
 //     gallery : document.querySelector('.gallery'),
 //     loadMoreBtn : document.querySelector('.load-more'),
 // }  -- гублю слово «elements», тому вирішила так
-
+// import { fetchImages } from './js/pixabayAPI';
 
 const searchForm = document.getElementById("search-form");
 const gallery = document.querySelector(".gallery");
