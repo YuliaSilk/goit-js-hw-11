@@ -203,3 +203,6 @@ transition: transform 250ms linear;
     background-color: #ed8dec
    
 }
+.load-more-hidden {
+    display: none;
+}

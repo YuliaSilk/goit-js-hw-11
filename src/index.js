@@ -3,15 +3,6 @@ import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 import axios from "axios";
 
-// const elements = {
-//     body : document.querySelector('body'),
-//     searchForm : document.querySelector('.search-form'),
-//     input : document.querySelector('.form-input'),
-//     searchBtn : document.querySelector('.search-btn'),
-//     gallery : document.querySelector('.gallery'),
-//     loadMoreBtn : document.querySelector('.load-more'),
-// }  -- гублю слово «elements», тому вирішила так
-// import { fetchImages } from './js/pixabayAPI';
 
 const searchForm = document.getElementById("search-form");
 const gallery = document.querySelector(".gallery");
@@ -22,10 +13,9 @@ const lightbox = new SimpleLightbox(".photo-card a");
 const API_KEY = "39213974-396d72fb1f832236dc1554890"; 
 const BASE_URL = "https://pixabay.com/api/";
 const PER_PAGE = 40;
-// const page = 1;
-// const query = '';
-
 let page = 1;
+// 
+// loadMoreBtn.classList.add("load-more-hidden");
 
 searchForm.addEventListener("submit", handleSubmit);
 function handleSubmit(event) {
@@ -40,13 +30,7 @@ function handleSubmit(event) {
   fetchImages(searchQuery);
 }
 
-loadMoreBtn.addEventListener("click", loadMoreImages);
-function loadMoreImages() {
-  page += 1;
-  const searchQuery = searchForm.searchQuery.value;
-  fetchImages(searchQuery);
-}
-
+// loadMoreBtn.classList.add("load-more-hidden");
 
 async function fetchImages(searchQuery) {
   try {
@@ -74,6 +58,10 @@ async function fetchImages(searchQuery) {
     
     const imageCards = images.map((image) => createImageCard(image));
     gallery.insertAdjacentHTML("beforeend", imageCards.join(""));
+
+    if(data.page < data.hits) {
+      loadMoreBtn.classList.replace("load-more-hidden", "load-more-btn");
+    }
     
     lightbox.refresh(); 
    
@@ -82,7 +70,17 @@ async function fetchImages(searchQuery) {
     console.error(error);}
 }
 
+loadMoreBtn.addEventListener("click", loadMoreImages);
+function loadMoreImages() {
+  page += 1;
 
+  if (data.page >= data.PER_PAGE) {
+    loadMoreBtn.classList.replace("load-more-hidden", "load-more-btn");
+  }
+  const searchQuery = searchForm.searchQuery.value;
+  fetchImages(searchQuery);
+  
+}
 
 function createImageCard(image) {
   return `
@@ -99,6 +97,7 @@ function createImageCard(image) {
     </div>
   `;
 }
+
 
 
 
