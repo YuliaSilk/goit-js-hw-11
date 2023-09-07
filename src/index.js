@@ -14,8 +14,9 @@ const API_KEY = "39213974-396d72fb1f832236dc1554890";
 const BASE_URL = "https://pixabay.com/api/";
 const PER_PAGE = 40;
 let page = 1;
-// 
-// loadMoreBtn.classList.add("load-more-hidden");
+let totalHits =0;
+let hasMoreImages = true;
+
 
 searchForm.addEventListener("submit", handleSubmit);
 function handleSubmit(event) {
@@ -30,7 +31,6 @@ function handleSubmit(event) {
   fetchImages(searchQuery);
 }
 
-// loadMoreBtn.classList.add("load-more-hidden");
 
 async function fetchImages(searchQuery) {
   try {
@@ -54,29 +54,40 @@ async function fetchImages(searchQuery) {
       return;
     }
 
-    Notiflix.Notify.success(`Hooray! We found ${response.data.totalHits} images.`);
+    totalHits = response.data.totalHits;
+    if(page * PER_PAGE >= totalHits) {
+      hasMoreImages = false;
+    }
+      Notiflix.Notify.success(`Hooray! We found ${response.data.totalHits} images.`);
     
     const imageCards = images.map((image) => createImageCard(image));
     gallery.insertAdjacentHTML("beforeend", imageCards.join(""));
 
-    if(data.page < data.hits) {
+    if(hasMoreImages) {
       loadMoreBtn.classList.replace("load-more-hidden", "load-more-btn");
+    } else {
+      loadMoreBtn.classList.add("load-more-hidden")
     }
-    
+  
     lightbox.refresh(); 
-   
+  
+    
   } 
   catch (error) {
     console.error(error);}
 }
 
+
+
 loadMoreBtn.addEventListener("click", loadMoreImages);
 function loadMoreImages() {
+  if(!hasMoreImages) {
+    loadMoreBtn.classList.add("load-more-hidden");
+    return;
+  }
   page += 1;
 
-  if (data.page >= data.PER_PAGE) {
-    loadMoreBtn.classList.replace("load-more-hidden", "load-more-btn");
-  }
+  
   const searchQuery = searchForm.searchQuery.value;
   fetchImages(searchQuery);
   
